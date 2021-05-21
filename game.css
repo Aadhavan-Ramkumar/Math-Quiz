@@ -1,0 +1,31 @@
+body {
+	background: red;
+}
+
+.LoginDiv1,
+.LoginDiv2 {
+	background: white;
+	padding: 10px;
+	float: none;
+	border-radius: 15px;
+}
+
+#User1Name,
+#User2Name {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+#User1Score,
+#User2Score {
+	display: inline-block;
+}
+
+#Output {
+	background: white;
+	border-radius: 10px;
+	border-top: 10px solid #AA4465;
+	padding: 10px;
+	float: none;
+	text-align: left;
+}
