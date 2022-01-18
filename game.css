@@ -29,3 +29,16 @@ body {
 	float: none;
 	text-align: left;
 }
+
+#OperationsHeading {
+	background: #AA4465;
+	border-radius: 10px;
+	padding-top: 2.5px;
+	padding-bottom: 2.5px;
+}
+
+#Addition, #Subtraction, #Multiplication, #Division {
+	height: 75px;
+	padding-top: 15px;
+	font-size: 25px;
+}
