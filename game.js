@@ -93,23 +93,23 @@ function CheckAnswer() {
                 document.getElementById("User2Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i>";
             }
         }
-
-        if (PlayerQuestion == "Player1") {
-            PlayerQuestion = "Player2";
-            document.getElementById("PlayerQuestion").innerHTML = "Question - " + User2Name;
-        } else {
-            PlayerQuestion = "Player1";
-            document.getElementById("PlayerQuestion").innerHTML = "Question - " + User1Name;
-        }
-
-        if (PlayerAnswer == "Player1") {
-            PlayerAnswer = "Player2";
-            document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User2Name;
-        } else {
-            PlayerAnswer = "Player1";
-            document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User1Name;
-        }
-
-        document.getElementById("Output").innerHTML = "";
     }
+    
+    if (PlayerQuestion == "Player1") {
+        PlayerQuestion = "Player2";
+        document.getElementById("PlayerQuestion").innerHTML = "Question - " + User2Name;
+    } else {
+        PlayerQuestion = "Player1";
+        document.getElementById("PlayerQuestion").innerHTML = "Question - " + User1Name;
+    }
+
+    if (PlayerAnswer == "Player1") {
+        PlayerAnswer = "Player2";
+        document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User2Name;
+    } else {
+        PlayerAnswer = "Player1";
+        document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User1Name;
+    }
+
+    document.getElementById("Output").innerHTML = "";
 }
