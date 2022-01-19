@@ -23,6 +23,8 @@ function Start() {
 
     document.getElementById("Results").innerHTML = "";
     document.getElementById("Overlay").style.display = "none";
+
+    Questionable = "";
 }
 
 function Operation(Operation, Operator) {
@@ -38,33 +40,44 @@ function Send() {
     switch (QuestionOperation) {
         case "Addition":
             Answer = parseInt(Number1) + parseInt(Number2);
+            Questionable = "True";
             break;
         case "Subtraction":
             Answer = parseInt(Number1) - parseInt(Number2);
+            Questionable = "True";
             break;
         case "Multiplication":
             Answer = parseInt(Number1) * parseInt(Number2);
+            Questionable = "True";
             break;
         case "Division":
             Answer = parseInt(Number1) / parseInt(Number2);
+            Questionable = "True";
             break;
         default:
             console.log("Operation not selected");
+            Questionable = "False";
+            document.getElementById("CurrentOperation").innerHTML = "OPERATION NOT SELECTED"
     }
-    console.log(Answer);
 
-    Question = "<h4>" + Number1 + " " + QuestionOperator + " " + Number2 + "</h4>";
-    Input = "<br> Answer: <input style='box-shadow: 5px 5px 5px black;' type='text' id='InputCheck'>";
-    Check = "<br><br><button style='box-shadow: 5px 5px 5px black;' class='btn btn-info' onclick='CheckAnswer()'> Check </button>";
-    Row = Question + Input + Check;
-    document.getElementById("Output").innerHTML = Row;
-    document.getElementById("Number1").value = "";
-    document.getElementById("Number2").value = "";
-    document.getElementById("CurrentOperation").innerHTML = "";
+    if (Questionable == "True") {
+        Question = "<h4>" + Number1 + " " + QuestionOperator + " " + Number2 + "</h4>";
+        Input = "<br> Answer: <input style='box-shadow: 5px 5px 5px black;' type='text' id='InputCheck'>";
+        Check = "<br><br><button style='box-shadow: 5px 5px 5px black;' class='btn btn-info' onclick='CheckAnswer()'> Check </button>";
+        Row = Question + Input + Check;
+        document.getElementById("Output").innerHTML = Row;
+        document.getElementById("Number1").value = "";
+        document.getElementById("Number2").value = "";
+        document.getElementById("CurrentOperation").innerHTML = "";
+
+        QuestionOperation = "";
+        QuestionOperator = "";
+
+
+        PlayerQuestion = "Player1";
+        PlayerAnswer = "Player2";
+    }
 }
-
-PlayerQuestion = "Player1";
-PlayerAnswer = "Player2";
 
 function CheckAnswer() {
     GetAnswer = document.getElementById("InputCheck").value;
@@ -94,7 +107,7 @@ function CheckAnswer() {
             }
         }
     }
-    
+
     if (PlayerQuestion == "Player1") {
         PlayerQuestion = "Player2";
         document.getElementById("PlayerQuestion").innerHTML = "Question - " + User2Name;
