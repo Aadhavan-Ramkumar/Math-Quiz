@@ -17,36 +17,38 @@ document.getElementById("User2Score").innerHTML = User2Score;
 document.getElementById("PlayerQuestion").innerHTML = "Question - " + User1Name;
 document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User2Name;
 
+QuestionOperation = "";
 QuestionOperator = "";
-AnswerOperator = "";
 
-function Operation(Operation, HumanOperator, ComputerOperator) {
-    console.log(Operation, HumanOperator, ComputerOperator);
+function Operation(Operation, Operator) {
+    console.log("Current Operation: " + Operation);
     document.getElementById("CurrentOperation").innerHTML = "Current Operation: " + Operation
-    QuestionOperator = HumanOperator;
-    AnswerOperator = ComputerOperator;
+    QuestionOperator = Operator;
+    QuestionOperation = Operation;
 }
 
 function Send() {
     Number1 = document.getElementById("Number1").value;
     Number2 = document.getElementById("Number2").value;
-    switch (AnswerOperator) {
-        case "+":
+    switch (QuestionOperation) {
+        case "Addition":
             Answer = parseInt(Number1) + parseInt(Number2);
             break;
-        case "-":
+        case "Subtraction":
             Answer = parseInt(Number1) - parseInt(Number2);
             break;
-        case "*":
+        case "Multiplication":
             Answer = parseInt(Number1) * parseInt(Number2);
             break;
-        case "/":
+        case "Division":
             Answer = parseInt(Number1) / parseInt(Number2);
             break;
+        default:
+            console.log("Operation not selected");
     }
     console.log(Answer);
 
-    Question = "<h4>" + Number1 + QuestionOperator + Number2 + "</h4>";
+    Question = "<h4>" + Number1 + " " + QuestionOperator + " " + Number2 + "</h4>";
     Input = "<br> Answer: <input type='text' id='InputCheck'>";
     Check = "<br><br><button class='btn btn-info' onclick='CheckAnswer()'> Check </button>";
     Row = Question + Input + Check;
