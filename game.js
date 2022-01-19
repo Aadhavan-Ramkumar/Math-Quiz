@@ -2,27 +2,32 @@ function LogOut() {
     window.location = "index.html";
 }
 
-User1Name = localStorage.getItem("Player1");
-User2Name = localStorage.getItem("Player2");
+function Start() {
+    User1Name = localStorage.getItem("Player1");
+    User2Name = localStorage.getItem("Player2");
 
-User1Score = 0;
-User2Score = 0;
+    User1Lives = 3;
+    User2Lives = 3;
 
-document.getElementById("User1Name").innerHTML = User1Name + " - ";
-document.getElementById("User2Name").innerHTML = User2Name + " - ";
+    document.getElementById("User1Name").innerHTML = User1Name + " - ";
+    document.getElementById("User2Name").innerHTML = User2Name + " - ";
 
-document.getElementById("User1Score").innerHTML = User1Score;
-document.getElementById("User2Score").innerHTML = User2Score;
+    document.getElementById("PlayerQuestion").innerHTML = "Question - " + User1Name;
+    document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User2Name;
 
-document.getElementById("PlayerQuestion").innerHTML = "Question - " + User1Name;
-document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User2Name;
+    document.getElementById("User1Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i>";
+    document.getElementById("User2Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i>";
 
-QuestionOperation = "";
-QuestionOperator = "";
+    QuestionOperation = "";
+    QuestionOperator = "";
+
+    document.getElementById("Results").innerHTML = "";
+    document.getElementById("Overlay").style.display = "none";
+}
 
 function Operation(Operation, Operator) {
     console.log("Current Operation: " + Operation);
-    document.getElementById("CurrentOperation").innerHTML = "Current Operation: " + Operation
+    document.getElementById("CurrentOperation").innerHTML = "Current Operation: " + Operation;
     QuestionOperator = Operator;
     QuestionOperation = Operation;
 }
@@ -49,8 +54,8 @@ function Send() {
     console.log(Answer);
 
     Question = "<h4>" + Number1 + " " + QuestionOperator + " " + Number2 + "</h4>";
-    Input = "<br> Answer: <input type='text' id='InputCheck'>";
-    Check = "<br><br><button class='btn btn-info' onclick='CheckAnswer()'> Check </button>";
+    Input = "<br> Answer: <input style='box-shadow: 5px 5px 5px black;' type='text' id='InputCheck'>";
+    Check = "<br><br><button style='box-shadow: 5px 5px 5px black;' class='btn btn-info' onclick='CheckAnswer()'> Check </button>";
     Row = Question + Input + Check;
     document.getElementById("Output").innerHTML = Row;
     document.getElementById("Number1").value = "";
@@ -64,39 +69,47 @@ PlayerAnswer = "Player2";
 function CheckAnswer() {
     GetAnswer = document.getElementById("InputCheck").value;
 
-    if (GetAnswer == Answer) {
+    if (GetAnswer != Answer) {
         if (PlayerAnswer == "Player1") {
-            User1Score = User1Score + 1;
-            document.getElementById("User1Score").innerHTML = User1Score;
+            User1Lives--;
+            if (User1Lives == 0) {
+                document.getElementById("User1Lives").innerHTML = "";
+                document.getElementById("Overlay").style.display = "block";
+                document.getElementById("Results").innerHTML = "Results: " + "<br><br>" + User1Name + " lost! <br><br>" + User2Name + " won!";
+            } else if (User1Lives == 1) {
+                document.getElementById("User1Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i>";
+            } else if (User1Lives == 2) {
+                document.getElementById("User1Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i>";
+            }
         } else {
-            User2Score = User2Score + 1;
-            document.getElementById("User2Score").innerHTML = User2Score;
+            User2Lives--;
+            if (User2Lives == 0) {
+                document.getElementById("User2Lives").innerHTML = "";
+                document.getElementById("Overlay").style.display = "block";
+                document.getElementById("Results").innerHTML = "Results: " + "<br><br>" + User2Name + " lost! <br><br>" + User1Name + " won!";
+            } else if (User2Lives == 1) {
+                document.getElementById("User2Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i>";
+            } else if (User2Lives == 2) {
+                document.getElementById("User2Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i>";
+            }
         }
-    } else {
+
+        if (PlayerQuestion == "Player1") {
+            PlayerQuestion = "Player2";
+            document.getElementById("PlayerQuestion").innerHTML = "Question - " + User2Name;
+        } else {
+            PlayerQuestion = "Player1";
+            document.getElementById("PlayerQuestion").innerHTML = "Question - " + User1Name;
+        }
+
         if (PlayerAnswer == "Player1") {
-            User2Score = User2Score + 1;
-            document.getElementById("User2Score").innerHTML = User2Score;
+            PlayerAnswer = "Player2";
+            document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User2Name;
         } else {
-            User1Score = User1Score + 1;
-            document.getElementById("User1Score").innerHTML = User1Score;
+            PlayerAnswer = "Player1";
+            document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User1Name;
         }
-    }
 
-    if (PlayerQuestion == "Player1") {
-        PlayerQuestion = "Player2";
-        document.getElementById("PlayerQuestion").innerHTML = "Question - " + User2Name;
-    } else {
-        PlayerQuestion = "Player1";
-        document.getElementById("PlayerQuestion").innerHTML = "Question - " + User1Name;
+        document.getElementById("Output").innerHTML = "";
     }
-
-    if (PlayerAnswer == "Player1") {
-        PlayerAnswer = "Player2";
-        document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User2Name;
-    } else {
-        PlayerAnswer = "Player1";
-        document.getElementById("PlayerAnswer").innerHTML = "Answer - " + User1Name;
-    }
-
-    document.getElementById("Output").innerHTML = "";
 }

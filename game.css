@@ -1,5 +1,5 @@
 body {
-	background: red;
+	background: orange;
 }
 
 .LoginDiv1,
@@ -16,22 +16,23 @@ body {
 	margin-left: 20px;
 }
 
-#User1Score,
-#User2Score {
+#User1Lives,
+#User2Lives {
 	display: inline-block;
 }
 
 #Output {
 	background: white;
 	border-radius: 10px;
-	border-top: 10px solid #AA4465;
+	border-top: 10px solid black;
 	padding: 10px;
 	float: none;
 	text-align: left;
 }
 
 #OperationsHeading {
-	background: #AA4465;
+	background: black;
+	color: white;
 	border-radius: 10px;
 	padding-top: 2.5px;
 	padding-bottom: 2.5px;
@@ -42,3 +43,22 @@ body {
 	padding-top: 15px;
 	font-size: 25px;
 }
+
+.glyphicon-heart {
+	color: red;
+	text-shadow: 5px 5px 5px black;
+}
+
+#Overlay {
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 2;
+	cursor: pointer;
+  }
