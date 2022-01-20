@@ -24,31 +24,34 @@
             <h3 id="PlayerAnswer" style="color: white;"></h3>
             <div style="box-shadow: 5px 5px 5px black;" id="Output" class="col-lg-6"></div>
             <br>
-            <h3 style="color: white;"> Number 1 </h3>
-            <input style="box-shadow: 5px 5px 5px black;" type="text" id="Number1" class="form-control" placeholder="Number 1">
-            <br>
-            <div id="Operations">
-                <div style="box-shadow: 5px 5px 5px black;" id="OperationsHeading">
-                    <h3> Choose Your Operation </h3>
+            <div style="box-shadow: 5px 5px 5px black;" id="EquationDiv" class="container">
+                <textarea id="Equation" class="btn-primary" readonly></textarea>
+                <br>
+                <div id="EquationButtons">
+                    <button class="btn btn-primary" onclick="AddNumber('1')"> 1 </button>
+                    <button class="btn btn-primary" onclick="AddNumber('2')"> 2 </button>
+                    <button class="btn btn-primary" onclick="AddNumber('3')"> 3 </button>
+                    <button class="btn btn-primary" onclick="Operation('Addition', '+')"> + </button>
+                    <br>
+                    <button class="btn btn-primary" onclick="AddNumber('4')"> 4 </button>
+                    <button class="btn btn-primary" onclick="AddNumber('5')"> 5 </button>
+                    <button class="btn btn-primary" onclick="AddNumber('6')"> 6 </button>
+                    <button class="btn btn-primary" onclick="Operation('Subtraction', '-')"> - </button>
+                    <br>
+                    <button class="btn btn-primary" onclick="AddNumber('7')"> 7 </button>
+                    <button class="btn btn-primary" onclick="AddNumber('8')"> 8 </button>
+                    <button class="btn btn-primary" onclick="AddNumber('9')"> 9 </button>
+                    <button class="btn btn-primary" onclick="Operation('Multiplication', 'x')"> x </button>
+                    <br>
+                    <button style="width: 185px;" class="btn btn-primary" onclick="AddNumber('0')"> 0 </button>
+                    <button class="btn btn-primary" onclick="Operation('Division', '÷')"> ÷ </button>
+                    <br>
                 </div>
-                <div id="OperationsSelection" style="margin-bottom: 10px;">
-                    <button style="box-shadow: 5px 5px 5px black;" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 btn btn-default" id="Addition"
-                        onclick="Operation(this.id, '+')"> + </button>
-                    <button style="box-shadow: 5px 5px 5px black;" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 btn btn-default" id="Subtraction"
-                        onclick="Operation(this.id, '-')"> - </button>
-                    <button style="box-shadow: 5px 5px 5px black;" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 btn btn-default" id="Multiplication"
-                        onclick="Operation(this.id,'x')"> x </button>
-                    <button style="box-shadow: 5px 5px 5px black;" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 btn btn-default" id="Division"
-                        onclick="Operation(this.id, '÷')"> ÷ </button>
-                    <br><br><br><br>
-                    <h3 id="CurrentOperation" style="color: white;"></h3>
-                </div>
-                <br><br>
+                <button style="width: 250px; margin: 10px;" class="btn btn-success" onclick="ClearAll()"> Clear All </button>
             </div>
-            <h3 style="color: white;"> Number 2 </h3>
-            <input style="box-shadow: 5px 5px 5px black;" type="text" id="Number2" class="form-control" placeholder="Number 2">
             <br><br>
-            <button style="box-shadow: 5px 5px 5px black;" class="btn btn-success" onclick="Send()" style="width: 10%;"> Send </button>
+            <button style="box-shadow: 5px 5px 5px black;" class="btn btn-success" onclick="Send()" style="width: 10%;">
+                Send </button>
             <br><br>
             <button style="box-shadow: 5px 5px 5px black;" class="btn btn-primary" onclick="LogOut()"> Log Out </button>
             <br><br>
@@ -59,7 +62,8 @@
             <h1 style="text-shadow: 5px 5px 5px black;"> Game Over! </h1>
             <h3 style="text-shadow: 5px 5px 5px black;" id="Results"> Results: </h3>
             <br><br>
-            <button style="box-shadow: 5px 5px 5px black;" class="btn btn-success" onclick="Start()"> Play Again </button>
+            <button style="box-shadow: 5px 5px 5px black;" class="btn btn-success" onclick="Start()"> Play Again
+            </button>
             <br><br>
             <button style="box-shadow: 5px 5px 5px black;" class="btn btn-primary" onclick="LogOut()"> Log Out </button>
         </center>

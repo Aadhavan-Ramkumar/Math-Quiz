@@ -5,3 +5,12 @@ function AddUser() {
     localStorage.setItem("Player2", Player2);
     window.location = "game.html";
 }
+
+window.addEventListener("keydown", MyKeyDown);
+
+function MyKeyDown(e) {
+    KeyPressed = e.keyCode;
+    if (KeyPressed == 13) {
+        AddUser();
+    }
+}

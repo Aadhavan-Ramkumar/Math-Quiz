@@ -3,6 +3,9 @@ function LogOut() {
 }
 
 function Start() {
+    Number1 = "";
+    Number2 = "";
+
     User1Name = localStorage.getItem("Player1");
     User2Name = localStorage.getItem("Player2");
 
@@ -18,25 +21,37 @@ function Start() {
     document.getElementById("User1Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i>";
     document.getElementById("User2Lives").innerHTML = "<i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i><i class='glyphicon glyphicon-heart'></i>";
 
+    document.getElementById("Results").innerHTML = "";
+    document.getElementById("Overlay").style.display = "none";
+
     QuestionOperation = "";
     QuestionOperator = "";
 
-    document.getElementById("Results").innerHTML = "";
-    document.getElementById("Overlay").style.display = "none";
+    Equation = "";
+    EquationShortcut = "On";
 
     Questionable = "";
 }
 
+function AddNumber(Number) {
+    document.getElementById("Equation").innerHTML += Number;
+}
+
 function Operation(Operation, Operator) {
-    console.log("Current Operation: " + Operation);
-    document.getElementById("CurrentOperation").innerHTML = "Current Operation: " + Operation;
-    QuestionOperator = Operator;
     QuestionOperation = Operation;
+    QuestionOperator = Operator;
+    document.getElementById("Equation").innerHTML += " " + Operator + " ";
+}
+
+function ClearAll() {
+    document.getElementById("Equation").innerHTML = "";
 }
 
 function Send() {
-    Number1 = document.getElementById("Number1").value;
-    Number2 = document.getElementById("Number2").value;
+    Equation = document.getElementById("Equation").innerHTML;
+    EquationArray = Equation.split(" " + QuestionOperator + " ");
+    Number1 = EquationArray[0];
+    Number2 = EquationArray[1];
     switch (QuestionOperation) {
         case "Addition":
             Answer = parseInt(Number1) + parseInt(Number2);
@@ -55,27 +70,25 @@ function Send() {
             Questionable = "True";
             break;
         default:
-            console.log("Operation not selected");
+            console.log("Operation Not Selected");
             Questionable = "False";
-            document.getElementById("CurrentOperation").innerHTML = "OPERATION NOT SELECTED"
     }
-
-    if (Questionable == "True") {
-        Question = "<h4>" + Number1 + " " + QuestionOperator + " " + Number2 + "</h4>";
+    if (Questionable != "False") {
+        Question = "<h4>" + Equation + "</h4>";
         Input = "<br> Answer: <input style='box-shadow: 5px 5px 5px black;' type='text' id='InputCheck'>";
         Check = "<br><br><button style='box-shadow: 5px 5px 5px black;' class='btn btn-info' onclick='CheckAnswer()'> Check </button>";
         Row = Question + Input + Check;
         document.getElementById("Output").innerHTML = Row;
-        document.getElementById("Number1").value = "";
-        document.getElementById("Number2").value = "";
-        document.getElementById("CurrentOperation").innerHTML = "";
-
-        QuestionOperation = "";
-        QuestionOperator = "";
-
-
         PlayerQuestion = "Player1";
         PlayerAnswer = "Player2";
+        Equation = "";
+        document.getElementById("Equation").innerHTML = "";
+        EquationShortcut = "Off";
+    } else {
+        document.getElementById("Equation").innerHTML = "Try Again";
+        setTimeout(function () {
+            document.getElementById("Equation").innerHTML = Equation;
+        }, 2500);
     }
 }
 
@@ -125,4 +138,70 @@ function CheckAnswer() {
     }
 
     document.getElementById("Output").innerHTML = "";
+    EquationShortcut = "On";
+}
+
+window.addEventListener("keydown", MyKeyDown);
+
+function MyKeyDown(e) {
+    KeyPressed = e.keyCode;
+    if (EquationShortcut == "On") {
+        switch (KeyPressed) {
+            case 48:
+                AddNumber("0");
+                break;
+            case 49:
+                AddNumber("1");
+                break;
+            case 50:
+                AddNumber("2");
+                break;
+            case 51:
+                AddNumber("3");
+                break;
+            case 52:
+                AddNumber("4");
+                break;
+            case 53:
+                AddNumber("5");
+                break;
+            case 54:
+                AddNumber("6");
+                break;
+            case 55:
+                AddNumber("7");
+                break;
+            case 56:
+                AddNumber("8");
+                break;
+            case 57:
+                AddNumber("9");
+                break;
+            case 8:
+                ClearAll();
+                break;
+            case 187:
+                Operation("Addition", "+");
+                break;
+            case 189:
+                Operation("Subtraction", "-");
+                break;
+            case 88:
+                Operation("Multiplication", "x");
+                break;
+            case 191:
+                Operation("Division", "÷");
+                break;
+        }
+    }
+    switch (KeyPressed) {
+        case 83:
+            Send();
+            break;
+        case 67:
+            CheckAnswer();
+            break;
+        case 76:
+            LogOut();
+    }
 }

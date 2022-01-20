@@ -30,20 +30,6 @@ body {
 	text-align: left;
 }
 
-#OperationsHeading {
-	background: black;
-	color: white;
-	border-radius: 10px;
-	padding-top: 2.5px;
-	padding-bottom: 2.5px;
-}
-
-#Addition, #Subtraction, #Multiplication, #Division {
-	height: 75px;
-	padding-top: 15px;
-	font-size: 25px;
-}
-
 .glyphicon-heart {
 	color: red;
 	text-shadow: 5px 5px 5px black;
@@ -58,7 +44,30 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 2;
 	cursor: pointer;
-  }
+}
+
+#EquationDiv {
+	background-color: white;
+	width: 300px;
+	border-radius: 10px;
+	font-size: 25px;
+}
+
+#EquationDiv textarea {
+	border-radius: 10px;
+	width: 250px;
+	float: none;
+	margin: 10px;
+	margin-bottom: 0px;
+	height: 50px;
+}
+
+#EquationButtons button {
+	height: 50px;
+	width: 50px;
+	margin: 5px;
+	border: solid 1px black;
+}
