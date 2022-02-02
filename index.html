@@ -3,39 +3,43 @@
 <html>
 
 <head>
-	<title> Math Quiz </title>
+    <title> Math Quiz </title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="description" content="A math game">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" type="text/css" href="game.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-	<script src="login.js"></script>
+    <link rel="stylesheet" href="game.css">
 </head>
 
 <body>
-	<center>
-		<h1 style="text-shadow: 5px 5px 5px black; color: white;"> Math Quiz </h1>
-		<div style="box-shadow: 5px 5px 5px black;" class="col-lg-4 col-sm-8 col-xs-11 LoginDiv1">
-			<h3> Player 1 Login </h3>
-			<label> Username: </label>
-			<br>
-			<input type="text" id="Username1" class="form=control" placeholder="Username 1">
-			<br>
-		</div>
-		<br>
-		<div style="box-shadow: 5px 5px 5px black;" class="col-lg-4 col-sm-8 col-xs-11 LoginDiv2">
-			<h3> Player 2 Login </h3>
-			<label> Username: </label>
-			<br>
-			<input type="text" id="Username2" class="form=control" placeholder="Username 2">
-			<br>
-		</div>
-		<br>
-		<button style="box-shadow: 5px 5px 5px black;" class="btn btn-primary" onclick="AddUser()"> Log In </button>
-	</center>
+    <center>
+        <h1 class="TextShadow"> Math Quiz </h1>
+        <br>
+        <div class="col-lg-4 col-sm-8 col-xs-11 BoxShadow LoginDiv">
+            <h3> Player 1 </h3>
+            <label> Username: </label>
+            <br>
+            <input type="text" id="Username1" class="form-control" placeholder="Name">
+            <br>
+        </div>
+        <br>
+        <div class="col-lg-4 col-sm-8 col-xs-11 BoxShadow LoginDiv">
+            <h3> Player 2 </h3>
+            <label> Username: </label>
+            <br>
+            <input type="text" id="Username2" class="form-control" placeholder="Name">
+            <br>
+        </div>
+        <br>
+        <button class="BoxShadow btn btn-primary" onclick="LogIn()"> Log In </button>
+    </center>
+    <script src="login.js"></script>
+    <script src="keys.js"></script>
 </body>
 
 </html>

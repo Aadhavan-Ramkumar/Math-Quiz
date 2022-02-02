@@ -4,71 +4,100 @@
 
 <head>
     <title> Math Quiz </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="A math game">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="game.css">
+
+    <link rel="stylesheet" href="game.css">
 </head>
 
-<body style="text-shadow: 5px 5px 5px black;" onload="Start()">
-    <h3 id="User1Name" style="color: white;"></h3>
-    <h3 id="User1Lives"></h3>
-    <br>
-    <h3 id="User2Name" style="color: white;"></h3>
-    <h3 id="User2Lives"></h3>
-    <div class="container">
+<body onload="Load()">
+    <div id="LoadingDiv">
         <center>
-            <h2 style="color: white;"> Math Quiz! </h2>
-            <h3 id="PlayerQuestion" style="color: white;"></h3>
-            <h3 id="PlayerAnswer" style="color: white;"></h3>
-            <div style="box-shadow: 5px 5px 5px black;" id="Output" class="col-lg-6"></div>
-            <br>
-            <div style="box-shadow: 5px 5px 5px black;" id="EquationDiv" class="container">
-                <textarea id="Equation" class="btn-primary" readonly></textarea>
-                <br>
-                <div id="EquationButtons">
-                    <button class="btn btn-primary" onclick="AddNumber('1')"> 1 </button>
-                    <button class="btn btn-primary" onclick="AddNumber('2')"> 2 </button>
-                    <button class="btn btn-primary" onclick="AddNumber('3')"> 3 </button>
-                    <button class="btn btn-primary" onclick="Operation('Addition', '+')"> + </button>
-                    <br>
-                    <button class="btn btn-primary" onclick="AddNumber('4')"> 4 </button>
-                    <button class="btn btn-primary" onclick="AddNumber('5')"> 5 </button>
-                    <button class="btn btn-primary" onclick="AddNumber('6')"> 6 </button>
-                    <button class="btn btn-primary" onclick="Operation('Subtraction', '-')"> - </button>
-                    <br>
-                    <button class="btn btn-primary" onclick="AddNumber('7')"> 7 </button>
-                    <button class="btn btn-primary" onclick="AddNumber('8')"> 8 </button>
-                    <button class="btn btn-primary" onclick="AddNumber('9')"> 9 </button>
-                    <button class="btn btn-primary" onclick="Operation('Multiplication', 'x')"> x </button>
-                    <br>
-                    <button style="width: 185px;" class="btn btn-primary" onclick="AddNumber('0')"> 0 </button>
-                    <button class="btn btn-primary" onclick="Operation('Division', '÷')"> ÷ </button>
-                    <br>
-                </div>
-                <button style="width: 250px; margin: 10px;" class="btn btn-success" onclick="ClearAll()"> Clear All </button>
-            </div>
-            <br><br>
-            <button style="box-shadow: 5px 5px 5px black;" class="btn btn-success" onclick="Send()" style="width: 10%;">
-                Send </button>
-            <br><br>
-            <button style="box-shadow: 5px 5px 5px black;" class="btn btn-primary" onclick="LogOut()"> Log Out </button>
-            <br><br>
+            <h1 class="TextShadow"> Loading... </h1>
         </center>
+        <div id="Loading"></div>
     </div>
-    <div id="Overlay" style="color: white;">
+    <div id="Game" style="display: none;">
+        <h3 id="User1Name" class="TextShadow"></h3>
+        <h3 id="User1Lives" class="TextShadow"></h3>
+        <br>
+        <h3 id="User2Name" class="TextShadow"></h3>
+        <h3 id="User2Lives" class="TextShadow"></h3>
+        <div class="container">
+            <center id="GameCenter">
+                <h2 class="TextShadow"> Math Quiz! </h2>
+                <h3 class="TextShadow" id="PlayerQuestion"></h3>
+                <h3 class="TextShadow" id="PlayerAnswer"></h3>
+                <div id="Output" class="col-lg-6 BoxShadow"></div>
+                <br>
+                <div id="EquationDiv" class="container BoxShadow">
+                    <textarea id="Equation" class="btn-primary" readonly></textarea>
+                    <br>
+                    <div id="EquationButtons">
+                        <button class="btn btn-primary" onclick="AddNumber(1)"> 1 </button>
+                        <button class="btn btn-primary" onclick="AddNumber(2)"> 2 </button>
+                        <button class="btn btn-primary" onclick="AddNumber(3)"> 3 </button>
+                        <button class="btn btn-primary" onclick="Operation('Addition', '+')"> + </button>
+                        <br>
+                        <button class="btn btn-primary" onclick="AddNumber(4)"> 4 </button>
+                        <button class="btn btn-primary" onclick="AddNumber(5)"> 5 </button>
+                        <button class="btn btn-primary" onclick="AddNumber(6)"> 6 </button>
+                        <button class="btn btn-primary" onclick="Operation('Subtraction', '-')"> - </button>
+                        <br>
+                        <button class="btn btn-primary" onclick="AddNumber(7)"> 7 </button>
+                        <button class="btn btn-primary" onclick="AddNumber(8)"> 8 </button>
+                        <button class="btn btn-primary" onclick="AddNumber(9)"> 9 </button>
+                        <button class="btn btn-primary" onclick="Operation('Multiplication', 'x')"> x </button>
+                        <br>
+                        <button style="width: 185px;" class="btn btn-primary" onclick="AddNumber(0)"> 0 </button>
+                        <button class="btn btn-primary" onclick="Operation('Division', '÷')"> ÷ </button>
+                        <br>
+                    </div>
+                    <button style="width: 250px; margin: 10px;" class="btn btn-success" onclick="ClearAll()"> Clear
+                        All
+                    </button>
+                </div>
+                <br><br>
+                <button style="width: 75px; margin-right: 150px;" id="Send" class="btn btn-success BoxShadow"
+                    onclick="Send()" disabled> Send
+                </button>
+                <button style="width: 75px;" class="btn btn-primary BoxShadow" onclick="LogOut()"> Log Out </button>
+            </center>
+        </div>
+        <div id="ResultsDiv">
+            <center>
+                <h1 class="TextShadow"> Game Over! </h1>
+                <h3 id="Results" class="TextShadow"> Results: </h3>
+                <br><br>
+                <button class="btn btn-success BoxShadow" onclick="Start()"> Play Again </button>
+                <br><br>
+                <button class="btn btn-primary BoxShadow" onclick="LogOut()"> Log Out </button>
+            </center>
+        </div>
+        <div id="Correct">
+            <center>
+                <h1 class="TextShadow"> 🥳Correct! </h1>
+            </center>
+        </div>
+        <div id="Wrong">
+            <center>
+                <h1 class="TextShadow"> 😥Oops! Try Again </h1>
+            </center>
+        </div>
         <center>
-            <h1 style="text-shadow: 5px 5px 5px black;"> Game Over! </h1>
-            <h3 style="text-shadow: 5px 5px 5px black;" id="Results"> Results: </h3>
-            <br><br>
-            <button style="box-shadow: 5px 5px 5px black;" class="btn btn-success" onclick="Start()"> Play Again
-            </button>
-            <br><br>
-            <button style="box-shadow: 5px 5px 5px black;" class="btn btn-primary" onclick="LogOut()"> Log Out </button>
+            <div id="Tip">
+                <h4> Tip: The answer for Division in decimals will be in two digits. Example - 1 ÷ 3 = 0.33 </h4>
+            </div>
         </center>
     </div>
     <script src="game.js"></script>
+    <script src="keys.js"></script>
 </body>
 
 </html>
