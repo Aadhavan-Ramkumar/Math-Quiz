@@ -17,18 +17,23 @@
 </head>
 
 <body onload="Load()">
-    <div id="LoadingDiv">
+    <div id="Load">
+        <div id="Progress" class="BoxShadow">
+            <div id="Color"></div>
+        </div>
         <center>
-            <h1 class="TextShadow"> Loading... </h1>
+            <h2 class="TextShadow"> Loading... </h2>
+            <h3 id="Percent" class="TextShadow"> 0% </h3>
         </center>
-        <div id="Loading"></div>
     </div>
     <div id="Game" style="display: none;">
-        <h3 id="User1Name" class="TextShadow"></h3>
-        <h3 id="User1Lives" class="TextShadow"></h3>
-        <br>
-        <h3 id="User2Name" class="TextShadow"></h3>
-        <h3 id="User2Lives" class="TextShadow"></h3>
+        <div id="Scores">
+            <h3 id="User1Name" class="TextShadow"></h3>
+            <h3 id="User1Lives" class="TextShadow"></h3>
+            <br>
+            <h3 id="User2Name" class="TextShadow"></h3>
+            <h3 id="User2Lives" class="TextShadow"></h3>
+        </div>
         <div class="container">
             <center id="GameCenter">
                 <h2 class="TextShadow"> Math Quiz! </h2>

@@ -5,11 +5,22 @@ function LogOut() {
 }
 
 function Load() {
+    let Width = 0;
+    let ProgressInterval = setInterval(Progress, 75);
+    function Progress() {
+        if (Width >= 100) {
+            clearInterval(ProgressInterval);
+        } else {
+            Width++;
+            document.getElementById("Color").style.width = Width + "%";
+            document.getElementById("Percent").innerHTML = Width + "%";
+        }
+    }
     setTimeout(() => {
-        document.getElementById("LoadingDiv").style.display = "none";
+        document.getElementById("Load").style.display = "none";
         document.getElementById("Game").style.display = "block";
         Start();
-    }, 5000);
+    }, 8000);
 }
 
 function Start() {
@@ -91,7 +102,7 @@ function Send() {
             Questionable = true;
             break;
         case "Division":
-            Answer = +(Math.round(parseInt(Number1) / parseInt(Number2) + "e+2")  + "e-2");
+            Answer = +(Math.round(parseInt(Number1) / parseInt(Number2) + "e+2") + "e-2");
             console.log(Answer);
             Questionable = true;
             break;

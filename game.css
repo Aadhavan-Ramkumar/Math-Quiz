@@ -132,31 +132,39 @@ body {
     line-height: 1;
 }
 
-#Loading::before {
-    animation: 2s linear infinite spinner;
-    animation-play-state: inherit;
-    border: solid 25px #cfd0d1;
-    border-bottom-color: #1c87c9;
-    border-radius: 50%;
-    content: "";
-    height: 200px;
-    position: absolute;
+#Load {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+	top: 0;
+	left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#Progress {
+	position: relative;
+	height: 30px;
+	width: 50%;
     top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    width: 200px;
-    will-change: transform;
+    transform: translate(50%, 50%);
+	border: 10px solid blue;
+	border-radius: 15px;
 }
 
-@keyframes spinner {
-    from {
-        transform: translate3d(-50%, -50%, 0) rotate(0deg);
-    }
-    to {
-        transform: translate3d(-50%, -50%, 0) rotate(360deg);
-    }
+#Load h2 {
+    position: block;
+    margin-top: 20%;
 }
 
-#LoadingDiv h1 {
-    margin-top: 450px;
+#Load h3 {
+    margin-top: 5%;
+}
+
+#Color {
+	position: absolute;
+	background-color: white;
+	width: 0%;
+	height: 10px;
+	border-radius: 15px;
 }
