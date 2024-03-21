@@ -129,12 +129,6 @@ function CheckAnswer() {
     GetAnswer = document.getElementById("InputCheck").value;
 
     if (GetAnswer != Answer) {
-        document.getElementById("Wrong").style.display = "block";
-        document.getElementById("Wrong").setAttribute("class", "Animate");
-        setTimeout(() => {
-            document.getElementById("Wrong").style.display = "none";
-            document.getElementById("Wrong").removeAttribute("class", "Animate");
-        }, 5000);
         if (PlayerAnswer == "Player1") {
             User1Lives--;
             if (User1Lives == 0) {
@@ -142,8 +136,18 @@ function CheckAnswer() {
                 document.getElementById("ResultsDiv").style.display = "block";
                 document.getElementById("Results").innerHTML = "Results: <br><br>" + User1Name + " lost! <br><br>" + User2Name + " won!";
             } else if (User1Lives == 1) {
+                document.getElementById("Wrong").style.display = "block";
+                document.getElementById("Wrong").setAttribute("class", "Animate");
+                setTimeout(() => {
+                    document.getElementById("Wrong").style.display = "none";
+                    document.getElementById("Wrong").removeAttribute("class", "Animate");
+                }, 5000);
                 document.getElementById("User1Lives").innerHTML = "<i class='glyphicon glyphicon-heart'>";
             } else if (User1Lives == 2) {
+                setTimeout(() => {
+                    document.getElementById("Wrong").style.display = "none";
+                    document.getElementById("Wrong").removeAttribute("class", "Animate");
+                }, 5000);
                 document.getElementById("User1Lives").innerHTML = "<i class='glyphicon glyphicon-heart'><i class='glyphicon glyphicon-heart'>";
             }
         } else {
@@ -153,8 +157,16 @@ function CheckAnswer() {
                 document.getElementById("ResultsDiv").style.display = "block";
                 document.getElementById("Results").innerHTML = "Results: <br><br>" + User2Name + " lost! <br><br>" + User1Name + " won!";
             } else if (User2Lives == 1) {
+                setTimeout(() => {
+                    document.getElementById("Wrong").style.display = "none";
+                    document.getElementById("Wrong").removeAttribute("class", "Animate");
+                }, 5000);
                 document.getElementById("User2Lives").innerHTML = "<i class='glyphicon glyphicon-heart'>";
             } else if (User2Lives == 2) {
+                setTimeout(() => {
+                    document.getElementById("Wrong").style.display = "none";
+                    document.getElementById("Wrong").removeAttribute("class", "Animate");
+                }, 5000);
                 document.getElementById("User2Lives").innerHTML = "<i class='glyphicon glyphicon-heart'><i class='glyphicon glyphicon-heart'>";
             }
         }
